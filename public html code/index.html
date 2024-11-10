@@ -1,0 +1,295 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <!-- Added the Content Security Policy meta tag to allow wss: connections -->
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https: wss:;">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nubs</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="nubs.site" />
+    <meta property="og:description" content="Just wait..." />
+    <meta property="og:image" content="https://nubs.site/logo1.png" />
+    <meta property="og:url" content="https://nubs.site" />
+    <meta property="og:type" content="website" />
+
+    <style>
+        /* Ensure body takes full height without scrolling */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #00b09b);
+            color: #fff;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Main container with flex-grow to fill available space */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            padding-bottom: 60px; /* Ensure footer doesn't overlap */
+            max-width: 100vw; /* Constrain the width to the viewport */
+            margin: 0 auto; /* Center content horizontally */
+            box-sizing: border-box;
+        }
+
+        /* Card style centered and with a maximum width */
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: slideIn 0.5s;
+            box-sizing: border-box;
+        }
+
+        #logo {
+            width: 200px; /* Adjust the size of the logo as needed */
+            margin-bottom: 20px; /* Space between logo and countdown */
+            animation: fadeIn 1s; /* Fade in animation */
+        }
+
+        #countdown {
+            font-size: 24px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #connectWallet {
+            margin: 20px auto; /* Center button horizontally */
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #9886e5;
+            border: none;
+            border-radius: 25px; /* More rounded corners */
+            color: white;
+            transition: background-color 0.3s, transform 0.3s; /* Add scale effect on hover */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        }
+
+        #connectWallet:hover {
+            background-color: #8c7bc4;
+            transform: scale(1.05); /* Slight scale effect on hover */
+        }
+
+        #connectWallet img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center; 
+            color: red; /* Default error color */
+            overflow-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+            word-wrap: break-word; /* Ensure long words wrap to the next line */
+            overflow: hidden; /* Hide overflow */
+        }
+
+        #mobileMessage {
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+            color: #fff; 
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Menu button style */
+        #menuButton {
+            margin: 20px auto; /* Center button horizontally */
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #9886e5;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #menuButton:hover {
+            background-color: #8c7bc4;
+            transform: scale(1.05);
+        }
+
+        #menuButton img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Footer style */
+        #footer {
+            position: relative; /* Footer is no longer fixed, but relative */
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #footer img {
+            width: 50px; /* Logo size in footer */
+            margin-right: 10px;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: underline;
+            margin: 0 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            #countdown {
+                font-size: 20px; /* Smaller countdown font */
+            }
+
+            #connectWallet, #menuButton {
+                padding: 10px 20px; /* Smaller button padding */
+                font-size: 18px;
+            }
+
+            #message {
+                font-size: 18px;
+            }
+
+            #mobileMessage {
+                font-size: 14px;
+            }
+
+            /* Ensure footer does not overlap menu button */
+            .main-content {
+                padding-bottom: 80px; /* Increased bottom padding */
+            }
+
+            #footer {
+                padding: 5px 10px; /* Slightly reduce footer padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="card">
+            <img id="logo" src="logo1.png" alt="Logo"> <!-- Logo image -->
+            <div id="countdown"></div>
+            <button id="connectWallet" aria-label="Connect to Phantom Wallet">
+                <img src="https://play-lh.googleusercontent.com/obRvW02OTYLzJuvic1ZbVDVXLXzI0Vt_JGOjlxZ92XMdBF_i3kqU92u9SgHvJ5pySdM" alt="Phantom Wallet Logo"> 
+                Connect Phantom Wallet
+            </button>
+            <div id="message"></div> <!-- Message area for errors or success -->
+            <div id="mobileMessage">For mobile devices download the "Phantom Wallet" app and search for nubs.site</div> <!-- Updated mobile message -->
+        </div>
+
+        <!-- Menu button outside the card -->
+        <button id="menuButton" aria-label="Open Menu" onclick="window.location.href='https://nubs.site/menu'">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/menu-2.png" alt="Menu Icon"> <!-- Menu Icon -->
+            Menu
+        </button>
+    </div>
+
+    <!-- Updated Footer with Twitter Link -->
+    <div id="footer">
+        <img src="logo1.png" alt="Logo">
+        © 2024 All Rights Reserved
+        <div style="margin-top: 10px;">
+            <a href="https://x.com/monerosolana" target="_blank">Twitter</a>
+        </div>
+    </div>
+
+    <script>
+        // Countdown script
+        var countdownDate = new Date("October 17, 2024 00:00:00").getTime();
+        var countdownInterval = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var pad = (num) => (num < 10 ? '0' : '') + num; // Function to pad numbers
+            
+            document.getElementById("countdown").innerHTML = 
+                pad(days) + " days " + pad(hours) + " hours " + pad(minutes) + " minutes " + pad(seconds) + " seconds ";
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Time's up!";
+            }
+        }, 1000);
+
+        // Connect to Phantom Wallet
+        document.getElementById('connectWallet').addEventListener('click', async function() {
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    const response = await window.solana.connect();
+                    const publicKey = response.publicKey.toString();
+                    console.log('Connected with public key:', publicKey);
+                    document.getElementById('message').innerText = 'Wallet connected for $nubs Airdrop: ' + publicKey;
+                    document.getElementById('message').style.color = '#fff'; // Set text color to white
+
+                    // Send public key to your server
+                    const saveResponse = await fetch('https://nubs.site/save_wallet.php', { // Update this to your actual server
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ publicKey: publicKey }),
+                    });
+
+                    if (!saveResponse.ok) {
+                        throw new Error('Network response was not ok: ' + saveResponse.statusText);
+                    }
+
+                    const data = await saveResponse.json();
+                    console.log('Wallet saved response:', data);
+                } catch (error) {
+                    console.error('Error connecting to Phantom Wallet:', error);
+                    document.getElementById('message').innerText = 'Failed to connect wallet. Please try again.';
+                }
+            } else {
+                console.error('Phantom Wallet not found. Please install Phantom Wallet extension.');
+                document.getElementById('message').innerText = 'Phantom Wallet not detected. Please install it.';
+            }
+        });
+    </script>
+</body>
+</html>

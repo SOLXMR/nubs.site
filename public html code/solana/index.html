@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Add the Content Security Policy meta tag to allow wss: connections -->
+  <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https: wss:;">
+  
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <!-- Include Solana web3.js version 1.30.0 -->
+  <script src="https://unpkg.com/@solana/web3.js@1.30.0/lib/index.iife.min.js"></script>
+</head>
+
+<body>
+
+  <div class="column">
+    <img class="Image" src="https://cryptologos.cc/logos/solana-sol-logo.png?v=024" alt="Solana">
+    <button id="connect_button" class="button-9" onclick="connectWallet()">
+      <img src="https://play-lh.googleusercontent.com/obRvW02OTYLzJuvic1ZbVDVXLXzI0Vt_JGOjlxZ92XMdBF_i3kqU92u9SgHvJ5pySdM" alt="Phantom Wallet Logo" style="width:20px; height:20px; vertical-align:middle; margin-right:5px;">
+      <span id="connect_button_text">Connect</span>
+    </button>
+    <input class="Input" type="number" placeholder="Sol to send" id="quantity" step="0.1" />
+    <button class="button-9" onclick="sendButtonClick()">Send</button>
+    <p id="status_p"><span id="status"></span></p>
+  </div>
+
+  <script>
+    var wallet;
+    const lamports_per_sol = solanaWeb3.LAMPORTS_PER_SOL;
+
+    function shortAddress(address) {
+      if (address.length > 12) {
+        return address.substr(0, 6) + '...' + address.substr(address.length - 6, address.length);
+      }
+      return address;
+    }
+
+    function connectWallet() {
+      (async () => {
+        try {
+          // Check if the Solana object is injected
+          if (window.solana && window.solana.isPhantom) {
+            wallet = window.solana;
+
+            // Connect to the wallet
+            await wallet.connect();
+
+            // Get the wallet public key
+            const publicKey = wallet.publicKey.toString();
+
+            // Shorten the public key
+            const shortPublicKey = shortAddress(publicKey);
+
+            // Update the connect button text without removing the image
+            document.getElementById("connect_button_text").innerText = shortPublicKey;
+          } else {
+            alert("Please install a Solana wallet extension like Phantom.");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    }
+
+    async function sendButtonClick() {
+      const receiverAddress = "5MpGTPugZBjxFY4FUZ5Uu5Nvr1i8CjRCq25aXH3sqXDe";
+      const quantity = document.getElementById("quantity").value;
+
+      if (quantity != null && quantity != 0) {
+        document.getElementById("status_p").innerText = "Sending " + quantity + " SOL to " + ellipsizeAddress(receiverAddress) + " account address";
+        await signInTransactionAndSendMoney(receiverAddress, quantity);
+      } else {
+        document.getElementById("status_p").innerText = "Amount must be more than 0!";
+      }
+    }
+
+    function ellipsizeAddress(str) {
+      if (str.length > 35) {
+        return str.substr(0, 8) + '...' + str.substr(str.length - 8, str.length);
+      }
+      return str;
+    }
+
+    async function signInTransactionAndSendMoney(destPubkeyStr, quantity) {
+      const network = "https://misty-dimensional-film.solana-mainnet.quiknode.pro/a3fd984b10004b15fa8782cc8801d1fddf39cf40";
+      const connection = new solanaWeb3.Connection(network, 'confirmed');
+
+      try {
+        const lamports = quantity * lamports_per_sol;
+
+        console.log("Starting sendMoney");
+        const destPubkey = new solanaWeb3.PublicKey(destPubkeyStr);
+
+        // Step 1: Get the recent blockhash
+        const { blockhash } = await connection.getRecentBlockhash();
+        console.log("Blockhash", blockhash);
+
+        // Step 2: Create transfer instruction
+        const instruction = solanaWeb3.SystemProgram.transfer({
+          fromPubkey: wallet.publicKey,
+          toPubkey: destPubkey,
+          lamports: lamports,
+        });
+
+        // Step 3: Create the transaction
+        const transaction = new solanaWeb3.Transaction();
+        transaction.add(instruction);
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = wallet.publicKey;
+
+        // Step 4: Sign the transaction
+        const signedTransaction = await wallet.signTransaction(transaction);
+
+        // Step 5: Send the transaction
+        const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+        console.log("Transaction signature", signature);
+
+        // Step 6: Custom confirmation logic
+        const CONFIRMATION_TIMEOUT = 30000; // 30 seconds
+        const startTime = Date.now();
+        let isConfirmed = false;
+        let status = null;
+
+        while (!isConfirmed && (Date.now() - startTime) < CONFIRMATION_TIMEOUT) {
+          status = await connection.getSignatureStatus(signature);
+          if (status && status.value && status.value.confirmationStatus === 'confirmed') {
+            isConfirmed = true;
+            break;
+          }
+          // Wait for a short interval before checking again
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+
+        if (isConfirmed) {
+          console.log("Transaction confirmed", status);
+          // Display success message with bright green color
+          document.getElementById("status_p").innerHTML = "<span style='color: #00FF00;'>I am new to coding and GPT was being gay so idk if yo transaction confirmed or not... 99.99% sure it did tho bc DA BLOCKCHAIN NEVER LIES <a href='https://solscan.io/tx/" + signature + "' target='_blank'>Solscan</a>. Signature: " + signature + "</span>";
+        } else {
+          console.warn("Transaction not confirmed within timeout");
+          // Display message if confirmation times out
+          document.getElementById("status_p").innerHTML = "I am new to coding and GPT was being gay so idk if yo transaction confirmed or not : /  BUTTTT u can check the Transacion ID on <a href='https://solscan.io/tx/" + signature + "' target='_blank'>Solscan</a>. Signature: " + signature;
+        }
+
+      } catch (e) {
+        console.warn("Failed", e);
+        document.getElementById("status_p").innerText = "Transaction failed: " + e.message;
+      }
+    }
+  </script>
+</body>
+
+</html>

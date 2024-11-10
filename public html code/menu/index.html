@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Nubs</title>
+    <style>
+        /* General reset to remove default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen background with gradient */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #00b09b); /* Updated gradient */
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space between top content and bottom logo */
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Main container styles */
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px; /* Padding for inner spacing */
+        }
+
+        h1 {
+            font-size: 56px; /* Increased font size */
+            font-weight: bold;
+            margin-bottom: 10px; /* Reduced margin for better spacing */
+            color: #fff;
+            text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3); /* Shadow for better visibility */
+        }
+
+        p {
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 40px;
+            color: #d9e4ff;
+        }
+
+        /* Grid layout for the boxes */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Styling each box with hover and transition effects */
+        .box {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            display: flex; /* Use flexbox to center content */
+            flex-direction: column;
+            justify-content: space-between; /* Ensures even spacing between elements */
+            align-items: center;
+            min-height: 250px; /* Ensures boxes have the same height */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .box h2 {
+            font-size: 24px;
+            color: #fff; /* Changed the color to white */
+            margin-bottom: 15px;
+        }
+
+        .box p {
+            font-size: 16px;
+            color: #d9e4ff;
+            margin-bottom: 15px;
+        }
+
+        /* Cool button styles with hover effects */
+        .box a, .box .coming-soon {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 12px 25px;
+            background-color: #9886e5; /* Updated button color */
+            color: white;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .box a:hover, .box .coming-soon:hover {
+            background-color: #7d70c1; /* Darker shade of #9886e5 on hover */
+            transform: scale(1.05);
+        }
+
+        /* Positioning the logo */
+        #logo {
+            width: 300px; /* Increased logo size */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+
+        /* Footer styles */
+        .footer {
+            font-size: 14px;
+            color: #d9e4ff;
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px; /* Smaller font size for mobile */
+            }
+
+            p {
+                font-size: 16px; /* Smaller font size for mobile */
+            }
+
+            .box {
+                padding: 30px 15px;
+            }
+
+            .box h2 {
+                font-size: 20px; /* Smaller heading for mobile */
+            }
+
+            .box a, .box .coming-soon {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            #logo {
+                width: 240px; /* Adjusted logo size for smaller screens */
+            }
+
+            .footer {
+                font-size: 12px; /* Smaller font size for footer on mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Nubs Menu 🦾</h1> <!-- Changed emoji to mechanical arm -->
+        <p>Select an option below to explore more:</p>
+
+        <div class="grid">
+            <!-- Top row with Nubs Room, NubsMatch, Discord Integration, and Donate -->
+            <div class="box">
+                <h2>Nubs Room</h2>
+                <p>Enter the chatroom!</p>
+                <a href="https://nubs.site/room">Enter Here</a>
+            </div>
+            <div class="box">
+                <h2>NubsMatch</h2>
+                <p>Find your <3 match today!</p>
+                <a href="https://nubs.site/match">Start Matching</a>
+            </div>
+            <div class="box">
+                <h2>Discord Integration</h2>
+                <p>Connect Discord!</p>
+                <a href="https://nubs.site/discord">Connect Here</a>
+            </div>
+            <div class="box">
+                <h2>Donate</h2>
+                <p>Donate with Solana!</p>
+                <a href="https://nubs.site/solana">Donate Here</a>
+            </div>
+
+            <!-- Middle row of Coming Soon placeholders -->
+            <div class="box">
+                <p>Coming Soon...</p>
+                <div class="coming-soon">Coming Soon...</div>
+            </div>
+            <div class="box">
+                <p>Coming Soon...</p>
+                <div class="coming-soon">Coming Soon...</div>
+            </div>
+            <div class="box">
+                <p>Coming Soon...</p>
+                <div class="coming-soon">Coming Soon...</div>
+            </div>
+            <div class="box">
+                <p>Coming Soon...</p>
+                <div class="coming-soon">Coming Soon...</div>
+            </div>
+
+            <!-- Bottom row with updated OG NubsChat, OG Chat, OGChat Login, and Support -->
+            <div class="box">
+                <h2>Sign up for OGChat</h2>
+                <p>Register your account to enter the chat.</p>
+                <a href="https://nubs.site/chat/register.php">Register Here</a>
+            </div>
+            <div class="box">
+                <h2>Enter the OGChat</h2>
+                <p>Join the conversation.</p>
+                <a href="https://nubs.site/chat/chat.php">OG Chat</a>
+            </div>
+            <div class="box">
+                <h2>Login to OGChat</h2>
+                <p>Access your account.</p>
+                <a href="https://nubs.site/chat/login.php">Login Here</a>
+            </div>
+            <div class="box">
+                <h2>Support/Help</h2>
+                <p>Need assistance? Visit our support page.</p>
+                <a href="https://nubs.site/support">Go to Support</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centered logo at the bottom -->
+    <a href="https://nubs.site">
+        <img src="logo1.png" alt="Logo" id="logo">
+    </a>
+
+    <!-- Footer with rights reserved text -->
+    <div class="footer">
+        &copy; 1984-2024 Nubs. All rights reserved.
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nubs v2 - Enhanced</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.2.2/dist/flickity.min.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Floating Social Icons -->
+  <div class="floating-social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+
+  <!-- Header with Glassmorphism -->
+  <header id="header">
+    <nav>
+      <div class="logo">
+        <a href="#hero">
+          <img src="images/logo1.png" alt="Nubs v2 Logo" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Parallax -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Welcome to Nubs v2</h1>
+      <p>Experience stunning digital creativity</p>
+      <a href="#about" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" data-aos="fade-up">
+    <h2>About Us</h2>
+    <p>We are a team of passionate professionals with an eye for the extraordinary...</p>
+    <div class="skills">
+      <div class="skill">
+        <p>Web Design</p>
+        <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <p>Development</p>
+        <div class="progress"><div class="progress-bar" style="width: 85%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section with Glassmorphism -->
+  <section id="services" data-aos="fade-up">
+    <h2>Our Services</h2>
+    <div class="service-card">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Web Development</h3>
+      <p>Creating stunning websites that look amazing on any device.</p>
+    </div>
+  </section>
+
+  <!-- Portfolio Section with Image Overlays -->
+  <section id="portfolio" data-aos="fade-up">
+    <h2>Our Work</h2>
+    <div class="portfolio-gallery">
+      <a href="images/sample1.jpg" data-lightbox="portfolio" data-title="Sample Project 1">
+        <img src="images/sample1.jpg" alt="Sample Project">
+        <div class="overlay">
+          <p>View Project</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section with Flickity Carousel -->
+  <section id="testimonials" data-aos="fade-up">
+    <h2>What Our Clients Say</h2>
+    <div class="carousel">
+      <div class="carousel-cell">
+        <p>"Amazing work! Highly recommend!"</p>
+        <span>- Client Name</span>
+      </div>
+      <div class="carousel-cell">
+        <p>"Incredible service and support!"</p>
+        <span>- Client Name</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2024 Nubs v2. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  <script src="https://unpkg.com/flickity@2.2.2/dist/flickity.pkgd.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
