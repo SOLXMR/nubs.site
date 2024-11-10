@@ -6,7 +6,7 @@ session_start();
 $host = 'localhost';
 $db   = 'nubsmrbf_discord_users';
 $user = 'nubsmrbf_dbuser';
-$pass = '!coYb.,(*zA4';
+$pass = 'password';
 $charset = 'utf8mb4';
 
 // DSN and options
