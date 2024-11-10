@@ -3,7 +3,7 @@
 $db_config = [
     'servername' => 'localhost', // Usually localhost, but check your hosting
     'username' => 'nubsmrbf_chatappadmin', // Your database username
-    'password' => 'Fortnite0019!', // Your database password
+    'password' => 'password', // Your database password
     'dbname' => 'nubsmrbf_chat_app_db' // Your database name
 ];
 
