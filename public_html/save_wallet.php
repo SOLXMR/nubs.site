@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $dbHost = 'localhost'; 
 $dbName = 'nubsmrbf_walletDB'; 
 $dbUser = 'nubsmrbf_walletuser'; 
-$dbPass = 'Timber2314!'; 
+$dbPass = 'password'; 
 
 // Create a new PDO instance for database connection
 try {
