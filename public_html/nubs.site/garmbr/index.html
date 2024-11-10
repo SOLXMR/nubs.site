@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Party</title>
+
+  <!-- Open Graph Meta Tags for Social Media Previews -->
+  <meta property="og:title" content="Music Party - Mobsters by Garmbr">
+  <meta property="og:description" content="Join the party with Garmbr. Enjoy cool effects and a concert-like experience!">
+  <meta property="og:image" content="wow.png">
+  <meta property="og:url" content="https://nubs.site">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Tags (Optional) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Music Party - Mobsters by Garmbr">
+  <meta name="twitter:description" content="Join the party with Garmbr. Enjoy cool effects and a concert-like experience!">
+  <meta name="twitter:image" content="wow.png">
+
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Full-Screen Setup */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Background GIF */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('party.gif') center center / cover no-repeat;
+      z-index: -1;
+      opacity: 0.7;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 0.7; }
+    }
+
+    #playerContainer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      width: 80%;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #800080;
+      text-shadow: 2px 2px 15px rgba(128, 0, 128, 0.7);
+    }
+
+    /* Animated Play/Pause Button */
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #222;
+      background-color: #800080;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(128, 0, 128, 0.6);
+      animation: pulse 2s infinite alternate;
+    }
+
+    button:hover {
+      box-shadow: 0 0 15px rgba(128, 0, 128, 0.8);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(128, 0, 128, 0.6); }
+      100% { transform: scale(1.05); box-shadow: 0 0 20px rgba(128, 0, 128, 0.8); }
+    }
+
+    /* Range Slider Styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: #4b004b; /* Darker Purple */
+      outline: none;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px rgba(75, 0, 75, 0.6);
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0 5px rgba(75, 0, 75, 0.8);
+    }
+
+    input[type="range"]:hover {
+      background: #5c005c; /* Darker Purple on Hover */
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #a020f0;
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(160, 32, 240, 0.8);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0 5px rgba(75, 0, 75, 0.8);
+    }
+
+    input[type="range"]:hover::-moz-range-thumb {
+      background: #a020f0;
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(160, 32, 240, 0.8);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .volume-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #800080;
+      margin-top: 20px;
+      text-shadow: 2px 2px 10px rgba(128, 0, 128, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="playerContainer">
+    <h1>Mobsters - Garmbr</h1>
+    <audio id="audio" src="mobsters.mp3"></audio>
+    <button id="playPause">Play</button>
+    <div class="controls">
+      <input type="range" id="seekBar" value="0" max="100">
+      <span id="currentTime">00:00</span> / <span id="duration">00:00</span>
+    </div>
+    <div class="volume-container">
+      <label for="volumeControl">Volume: <span id="volumeLabel">50%</span></label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const playPauseButton = document.getElementById('playPause');
+    const seekBar = document.getElementById('seekBar');
+    const volumeControl = document.getElementById('volumeControl');
+    const volumeLabel = document.getElementById('volumeLabel');
+    const currentTime = document.getElementById('currentTime');
+    const duration = document.getElementById('duration');
+
+    const formatTime = seconds => {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${mins}:${secs}`;
+    };
+
+    playPauseButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+      } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      seekBar.value = progress;
+      currentTime.textContent = formatTime(audio.currentTime);
+      if (audio.duration) {
+        duration.textContent = formatTime(audio.duration);
+      }
+    });
+
+    seekBar.addEventListener('input', () => {
+      const time = (seekBar.value / 100) * audio.duration;
+      audio.currentTime = time;
+    });
+
+    volumeControl.addEventListener('input', () => {
+      const volume = volumeControl.value;
+      audio.volume = volume;
+      volumeLabel.textContent = `${Math.round(volume * 100)}%`;
+    });
+
+    audio.addEventListener('ended', () => {
+      playPauseButton.textContent = 'Play';
+    });
+  </script>
+
+</body>
+</html>

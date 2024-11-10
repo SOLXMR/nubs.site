@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nubs</title>
+    <style>
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img id="logo" src="logo1.png" alt="Logo">
+        <div id="countdown"></div>
+        <button id="connectWallet" aria-label="Connect to Phantom Wallet">
+            <img src="https://play-lh.googleusercontent.com/obRvW02OTYLzJuvic1ZbVDVXLXzI0Vt_JGOjlxZ92XMdBF_i3kqU92u9SgHvJ5pySdM" alt="Phantom Wallet Logo"> 
+            Connect Phantom Wallet
+        </button>
+        <div id="message"></div>
+        <div id="mobileMessage">For mobile devices download the "Phantom Wallet" app and search for nubs.site</div>
+    </div>
+
+    <div id="chatMessages" style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: white;">
+        <!-- Messages will be appended here -->
+    </div>
+
+    <button id="menuButton" aria-label="Open Menu" onclick="window.location.href='https://nubs.site/menu'">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/menu-2.png" alt="Menu Icon"> 
+        Menu
+    </button>
+
+    <script>
+        // Countdown script here...
+
+        // Connect to Phantom Wallet script here...
+
+        // Function to load messages
+        function loadMessages() {
+            fetch('get_messages.php') // Adjust the path if necessary
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Log the response to see what's being returned
+                    const chatMessages = document.getElementById('chatMessages');
+                    chatMessages.innerHTML = ''; // Clear current messages
+
+                    if (data.success) {
+                        data.messages.forEach(msg => {
+                            const div = document.createElement('div');
+                            div.className = 'message';
+                            div.innerHTML = `<span class="username">${msg.username}</span>: ${msg.message} <span class="timestamp">(${new Date(msg.timestamp).toLocaleString()})</span>`;
+                            chatMessages.appendChild(div); // Append each message to the chat box
+                        });
+
+                        // Scroll to the bottom of the chat box
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    } else {
+                        // Handle the error if no messages found
+                        const div = document.createElement('div');
+                        div.className = 'error';
+                        div.innerHTML = `<span>${data.error}</span>`;
+                        chatMessages.appendChild(div);
+                    }
+                })
+                .catch(error => console.error('Error fetching messages:', error));
+        }
+
+        // Load messages every 2 seconds
+        setInterval(loadMessages, 2000);
+
+        // Initial load of messages
+        loadMessages();
+    </script>
+</body>
+</html>

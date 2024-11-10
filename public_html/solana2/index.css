@@ -1,0 +1,140 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set body styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Ensure html element can scroll */
+html {
+    overflow-x: hidden;
+}
+
+/* Column layout */
+.column {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Image styles */
+.Image {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+/* Button styles */
+.button-9 {
+    background-color: #9886e5;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 10px auto;
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 300px;
+}
+
+.button-9:hover {
+    background-color: #8c7bc4;
+    transform: scale(1.05);
+}
+
+/* Input field styles */
+.Input {
+    width: calc(100% - 40px);
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Status message styles */
+#status_p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #ff8080;
+    text-align: center;
+}
+
+/* Dashboard styles */
+.dashboard {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.dashboard h2, .dashboard h3 {
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.dashboard p, .dashboard div {
+    color: #ddd;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.dashboard .section {
+    margin-bottom: 20px;
+}
+
+.transaction-entry, .token-entry {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    width: calc(100% - 40px);
+    max-width: 600px;
+}
+
+.transaction-entry p, .token-entry p {
+    margin: 5px 0;
+}
+
+/* Canvas styles */
+canvas {
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 10px auto;
+    max-width: 100%;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Image {
+        max-width: 80px;
+    }
+
+    .button-9,
+    .Input {
+        width: calc(100% - 40px);
+        max-width: 300px;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
