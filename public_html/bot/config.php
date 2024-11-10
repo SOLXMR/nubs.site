@@ -1,4 +1,4 @@
 <?php
-define("BOT_TOKEN", "7618736848:AAE0Via8SDzdSMyQRtHyKUHY3Ivt3uZKAOg");
+define("BOT_TOKEN", "paste bot token remved fronm git 4 privacy");
 define("CPANEL_USER", "nubsmrbf");
 ?>
