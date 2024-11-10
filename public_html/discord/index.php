@@ -10,7 +10,7 @@ session_start();
 $host = 'localhost';
 $db   = 'nubsmrbf_discord_users'; // Replace with your actual database name
 $user = 'nubsmrbf_dbuser';        // Replace with your actual database username
-$pass = '!coYb.,(*zA4';                 // Replace with your actual database password
+$pass = 'password';                 // Replace with your actual database password
 $charset = 'utf8mb4';
 
 // Data Source Name (DSN)
